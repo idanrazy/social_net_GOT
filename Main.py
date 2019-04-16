@@ -1,2 +1,9 @@
+import Network
+
+path = r'data/thrones-network.csv'
 if __name__ == "__main__":
-    print("test")
+    net = Network.Network(path, wf=0)
+    net.init_net()
+    #net.net_info()
+    #net.top10_ranked()
+    net.calculate_communities(iter=4)
