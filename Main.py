@@ -6,4 +6,5 @@ if __name__ == "__main__":
     net.init_net()
     #net.net_info()
     #net.top10_ranked()
-    net.calculate_communities(iter=4)
+    net.calculate_communities(iter=3)
+    net.plot_communites()
