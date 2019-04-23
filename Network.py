@@ -50,6 +50,26 @@ class Network:
             print(dict(enumerate(comm_i)))
         self.Comm = comm_i
 
+    def link_prediction(self):
+        g = self.G
+        preds_jc = nx.jaccard_coefficient(g)
+        pred_jc_dict = {}
+        for u, v, p, in preds_jc:
+            pred_jc_dict[(u, v)] = p
+        result = sorted(pred_jc_dict.items(), key=lambda x:x[1], reverse=True)
+        print('=' * 80)
+        print("First method")
+        print(result)
+
+        preds_pa = nx.preferential_attachment(g)
+        pred_pa_dict = {}
+        for u, v, p in preds_pa:
+            pred_pa_dict[(u, v)] = p
+        result = sorted(pred_pa_dict.items(), key=lambda x:x[1], reverse=True)
+        print('=' * 80)
+        print("First method")
+        print(result)
+
     def plot_network(self):
         nx.draw_spring(self.G, with_labels=True)
         plt.show()
