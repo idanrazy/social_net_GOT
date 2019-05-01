@@ -77,7 +77,8 @@ class Network:
     def plot_communities(self):
         g = self.G
         colors = ['r', 'b', 'g', 'y']
+        pos = nx.spring_layout(g)
         for i in range(len(self.Comm)):
             k = g.subgraph(self.Comm[i])
-            nx.draw_spring(k, node_color=colors[i], with_labels=True)
+            nx.draw_networkx(k, node_color=colors[i], with_labels=True, pos=pos)
         plt.show()
