@@ -13,6 +13,7 @@ class Network:
         self.Weight_filter = wf
         self.G = None
         self.Comm = None
+        self.between = None
 
     """ create init network """
     def init_net(self):
@@ -37,6 +38,7 @@ class Network:
         print("top 10 Closeness Centrality")
         print(sorted(clossnes.items(), key=lambda x: x[1], reverse=True)[:10])
         between = nx.betweenness_centrality(g)
+        self.between = between
         print("top 10 Between Centrality")
         print(sorted(between.items(), key=lambda x: x[1], reverse=True)[:10])
 
@@ -80,5 +82,6 @@ class Network:
         pos = nx.spring_layout(g)
         for i in range(len(self.Comm)):
             k = g.subgraph(self.Comm[i])
-            nx.draw_networkx(k, node_color=colors[i], with_labels=True, pos=pos)
+            bet_size = [(self.between[node]*1000)+100 for node in k.node]
+            nx.draw_networkx(k, node_color=colors[i], with_labels=True, pos=pos,node_size=bet_size)
         plt.show()
